@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Reels</title>
+    <meta name="theme-color" content="#28231e">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Trirong:wght@500;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+    <!-- Home: one card per folder -->
+    <div class="container" id="homeContainer">
+        <div class="header">
+            <h1 id="hdrTitle"></h1>
+        </div>
+
+        <div id="loadingIndicator" class="loading">Loading…</div>
+        <div id="errorMessage" class="error-message" style="display:none"></div>
+
+        <section id="homeView" style="display:none">
+            <div class="section-head"><h2>Collections</h2><p>Every collection has its own link. Open one to watch its reels.</p></div>
+            <div id="folderList" class="folder-list"></div>
+            <div class="pad conn" id="connBox"></div>
+        </section>
+
+        <!-- Connect to Google Sheet -->
+        <section id="setupView" class="setup" style="display:none">
+            <h2>Connect to Google Sheet</h2>
+            <p>Likes, comments and shares are saved in a Google Sheet. Paste the Apps Script web app URL (see README.md). It is saved in this browser only.</p>
+            <input type="text" id="urlInput" class="field" placeholder="https://script.google.com/macros/s/.../exec">
+            <button id="saveUrlBtn" class="primary-btn">Save &amp; connect</button>
+            <button id="cancelUrlBtn" class="ghost-btn">Cancel</button>
+        </section>
+    </div>
+
+    <!-- Reels player for one folder -->
+    <section id="reelView" class="reel-view" style="display:none">
+        <div class="topbar">
+            <button id="reelBack" class="tb-btn" aria-label="All collections"></button>
+            <div class="tb-title"><b id="reelTitle"></b><small id="reelSub"></small></div>
+            <button id="tagClear" class="tag-pill" style="display:none" aria-label="Clear hashtag filter"></button>
+            <button id="filterBtn" class="tb-btn" aria-label="Filter by hashtag"></button>
+            <button id="muteBtn" class="tb-btn" aria-label="Sound"></button>
+        </div>
+        <div id="feed" class="feed"></div>
+        <div class="nav-btns">
+            <button id="prevBtn" class="tb-btn" aria-label="Previous reel"></button>
+            <button id="nextBtn" class="tb-btn" aria-label="Next reel"></button>
+        </div>
+    </section>
+
+    <div id="toast" class="toast" style="display:none"></div>
+    <div id="sheetBackdrop" class="sheet-backdrop" style="display:none"></div>
+
+    <!-- Comments -->
+    <div id="commentSheet" class="sheet" role="dialog" aria-modal="true" aria-labelledby="cmTitle" style="display:none">
+        <div class="sheet-grip"></div>
+        <div class="sheet-head"><h3 id="cmTitle">Comments</h3><button class="sheet-close" aria-label="Close"></button></div>
+        <p id="cmVideo" class="sheet-sub"></p>
+        <div id="commentList" class="comment-list"></div>
+        <div class="comment-form">
+            <div id="cmNameBox">
+                <label class="lbl" for="cmName">Your name</label>
+                <input id="cmName" class="field" type="text" maxlength="40" autocomplete="name" placeholder="Shown next to your comment">
+            </div>
+            <p id="cmAs" class="cm-as" style="display:none"></p>
+            <div class="cm-row">
+                <input id="cmText" class="field" type="text" maxlength="500" autocomplete="off" placeholder="Add a comment…">
+                <button id="cmPost" class="post-btn">Post</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Share -->
+    <div id="shareSheet" class="sheet" role="dialog" aria-modal="true" aria-labelledby="shTitle" style="display:none">
+        <div class="sheet-grip"></div>
+        <div class="sheet-head"><h3 id="shTitle">Share reel</h3><button class="sheet-close" aria-label="Close"></button></div>
+        <p id="shVideo" class="sheet-sub"></p>
+        <input id="shLink" class="field" type="text" readonly>
+        <div class="share-grid">
+            <button id="shCopy" class="opt-btn"></button>
+            <button id="shWhatsapp" class="opt-btn wa"></button>
+            <button id="shNative" class="opt-btn"></button>
+        </div>
+    </div>
+
+    <!-- Hashtag filter -->
+    <div id="tagSheet" class="sheet" role="dialog" aria-modal="true" aria-labelledby="tgTitle" style="display:none">
+        <div class="sheet-grip"></div>
+        <div class="sheet-head"><h3 id="tgTitle">Filter by hashtag</h3><button class="sheet-close" aria-label="Close"></button></div>
+        <p class="sheet-sub">Only reels with the hashtag will play, then the list repeats.</p>
+        <div id="tagCloud" class="tag-cloud"></div>
+        <button id="tagAll" class="primary-btn sheet-save">Show all reels</button>
+    </div>
+
+    <script src="script.js?v=1"></script>
+</body>
+</html>

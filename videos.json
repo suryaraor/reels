@@ -1,0 +1,215 @@
+{
+ "generated": "2026-11-13T15:03:26.081Z",
+ "folders": [
+  {
+   "name": "gyoridavid",
+   "videos": [
+    {
+     "file": "01-project-shortcut-hunter.mp4",
+     "src": "data/gyoridavid/01-project-shortcut-hunter.mp4",
+     "poster": "posters/gyoridavid/01-project-shortcut-hunter.jpg"
+    },
+    {
+     "file": "02-project-leakcheck.mp4",
+     "src": "data/gyoridavid/02-project-leakcheck.mp4",
+     "poster": "posters/gyoridavid/02-project-leakcheck.jpg"
+    },
+    {
+     "file": "03-project-realworld-stresstest.mp4",
+     "src": "data/gyoridavid/03-project-realworld-stresstest.mp4",
+     "poster": "posters/gyoridavid/03-project-realworld-stresstest.jpg"
+    },
+    {
+     "file": "04-project-fairscan.mp4",
+     "src": "data/gyoridavid/04-project-fairscan.mp4",
+     "poster": "posters/gyoridavid/04-project-fairscan.jpg"
+    },
+    {
+     "file": "05-project-hidden-signal-probe.mp4",
+     "src": "data/gyoridavid/05-project-hidden-signal-probe.mp4",
+     "poster": "posters/gyoridavid/05-project-hidden-signal-probe.jpg"
+    },
+    {
+     "file": "06-project-everyskin.mp4",
+     "src": "data/gyoridavid/06-project-everyskin.mp4",
+     "poster": "posters/gyoridavid/06-project-everyskin.jpg"
+    },
+    {
+     "file": "07-project-gazematch.mp4",
+     "src": "data/gyoridavid/07-project-gazematch.mp4",
+     "poster": "posters/gyoridavid/07-project-gazematch.jpg"
+    },
+    {
+     "file": "08-project-whatif-xray.mp4",
+     "src": "data/gyoridavid/08-project-whatif-xray.mp4",
+     "poster": "posters/gyoridavid/08-project-whatif-xray.jpg"
+    },
+    {
+     "file": "09-project-flipcheck.mp4",
+     "src": "data/gyoridavid/09-project-flipcheck.mp4",
+     "poster": "posters/gyoridavid/09-project-flipcheck.jpg"
+    },
+    {
+     "file": "10-project-blindtest.mp4",
+     "src": "data/gyoridavid/10-project-blindtest.mp4",
+     "poster": "posters/gyoridavid/10-project-blindtest.jpg"
+    },
+    {
+     "file": "11-project-factcheck-rad.mp4",
+     "src": "data/gyoridavid/11-project-factcheck-rad.mp4",
+     "poster": "posters/gyoridavid/11-project-factcheck-rad.jpg"
+    },
+    {
+     "file": "12-project-priorscan-agent.mp4",
+     "src": "data/gyoridavid/12-project-priorscan-agent.mp4",
+     "poster": "posters/gyoridavid/12-project-priorscan-agent.jpg"
+    },
+    {
+     "file": "13-project-stainproof.mp4",
+     "src": "data/gyoridavid/13-project-stainproof.mp4",
+     "poster": "posters/gyoridavid/13-project-stainproof.jpg"
+    },
+    {
+     "file": "14-project-sureenough.mp4",
+     "src": "data/gyoridavid/14-project-sureenough.mp4",
+     "poster": "posters/gyoridavid/14-project-sureenough.jpg"
+    },
+    {
+     "file": "15-project-memoryleak-audit.mp4",
+     "src": "data/gyoridavid/15-project-memoryleak-audit.mp4",
+     "poster": "posters/gyoridavid/15-project-memoryleak-audit.jpg"
+    },
+    {
+     "file": "16-project-fedxray.mp4",
+     "src": "data/gyoridavid/16-project-fedxray.mp4",
+     "poster": "posters/gyoridavid/16-project-fedxray.jpg"
+    },
+    {
+     "file": "17-project-lungage.mp4",
+     "src": "data/gyoridavid/17-project-lungage.mp4",
+     "poster": "posters/gyoridavid/17-project-lungage.jpg"
+    },
+    {
+     "file": "18-project-worthit.mp4",
+     "src": "data/gyoridavid/18-project-worthit.mp4",
+     "poster": "posters/gyoridavid/18-project-worthit.jpg"
+    },
+    {
+     "file": "19-project-cleanlabel.mp4",
+     "src": "data/gyoridavid/19-project-cleanlabel.mp4",
+     "poster": "posters/gyoridavid/19-project-cleanlabel.jpg"
+    },
+    {
+     "file": "20-project-synthrx.mp4",
+     "src": "data/gyoridavid/20-project-synthrx.mp4",
+     "poster": "posters/gyoridavid/20-project-synthrx.jpg"
+    }
+   ]
+  },
+  {
+   "name": "JoasASantos",
+   "videos": [
+    {
+     "file": "01-project-shortcut-hunter.mp4",
+     "src": "data/JoasASantos/01-project-shortcut-hunter.mp4",
+     "poster": "posters/JoasASantos/01-project-shortcut-hunter.jpg"
+    },
+    {
+     "file": "02-project-leakcheck.mp4",
+     "src": "data/JoasASantos/02-project-leakcheck.mp4",
+     "poster": "posters/JoasASantos/02-project-leakcheck.jpg"
+    },
+    {
+     "file": "03-project-realworld-stresstest.mp4",
+     "src": "data/JoasASantos/03-project-realworld-stresstest.mp4",
+     "poster": "posters/JoasASantos/03-project-realworld-stresstest.jpg"
+    },
+    {
+     "file": "04-project-fairscan.mp4",
+     "src": "data/JoasASantos/04-project-fairscan.mp4",
+     "poster": "posters/JoasASantos/04-project-fairscan.jpg"
+    },
+    {
+     "file": "05-project-hidden-signal-probe.mp4",
+     "src": "data/JoasASantos/05-project-hidden-signal-probe.mp4",
+     "poster": "posters/JoasASantos/05-project-hidden-signal-probe.jpg"
+    },
+    {
+     "file": "06-project-everyskin.mp4",
+     "src": "data/JoasASantos/06-project-everyskin.mp4",
+     "poster": "posters/JoasASantos/06-project-everyskin.jpg"
+    },
+    {
+     "file": "07-project-gazematch.mp4",
+     "src": "data/JoasASantos/07-project-gazematch.mp4",
+     "poster": "posters/JoasASantos/07-project-gazematch.jpg"
+    },
+    {
+     "file": "08-project-whatif-xray.mp4",
+     "src": "data/JoasASantos/08-project-whatif-xray.mp4",
+     "poster": "posters/JoasASantos/08-project-whatif-xray.jpg"
+    },
+    {
+     "file": "09-project-flipcheck.mp4",
+     "src": "data/JoasASantos/09-project-flipcheck.mp4",
+     "poster": "posters/JoasASantos/09-project-flipcheck.jpg"
+    },
+    {
+     "file": "10-project-blindtest.mp4",
+     "src": "data/JoasASantos/10-project-blindtest.mp4",
+     "poster": "posters/JoasASantos/10-project-blindtest.jpg"
+    },
+    {
+     "file": "11-project-factcheck-rad.mp4",
+     "src": "data/JoasASantos/11-project-factcheck-rad.mp4",
+     "poster": "posters/JoasASantos/11-project-factcheck-rad.jpg"
+    },
+    {
+     "file": "12-project-priorscan-agent.mp4",
+     "src": "data/JoasASantos/12-project-priorscan-agent.mp4",
+     "poster": "posters/JoasASantos/12-project-priorscan-agent.jpg"
+    },
+    {
+     "file": "13-project-stainproof.mp4",
+     "src": "data/JoasASantos/13-project-stainproof.mp4",
+     "poster": "posters/JoasASantos/13-project-stainproof.jpg"
+    },
+    {
+     "file": "14-project-sureenough.mp4",
+     "src": "data/JoasASantos/14-project-sureenough.mp4",
+     "poster": "posters/JoasASantos/14-project-sureenough.jpg"
+    },
+    {
+     "file": "15-project-memoryleak-audit.mp4",
+     "src": "data/JoasASantos/15-project-memoryleak-audit.mp4",
+     "poster": "posters/JoasASantos/15-project-memoryleak-audit.jpg"
+    },
+    {
+     "file": "16-project-fedxray.mp4",
+     "src": "data/JoasASantos/16-project-fedxray.mp4",
+     "poster": "posters/JoasASantos/16-project-fedxray.jpg"
+    },
+    {
+     "file": "17-project-lungage.mp4",
+     "src": "data/JoasASantos/17-project-lungage.mp4",
+     "poster": "posters/JoasASantos/17-project-lungage.jpg"
+    },
+    {
+     "file": "18-project-worthit.mp4",
+     "src": "data/JoasASantos/18-project-worthit.mp4",
+     "poster": "posters/JoasASantos/18-project-worthit.jpg"
+    },
+    {
+     "file": "19-project-cleanlabel.mp4",
+     "src": "data/JoasASantos/19-project-cleanlabel.mp4",
+     "poster": "posters/JoasASantos/19-project-cleanlabel.jpg"
+    },
+    {
+     "file": "20-project-synthrx.mp4",
+     "src": "data/JoasASantos/20-project-synthrx.mp4",
+     "poster": "posters/JoasASantos/20-project-synthrx.jpg"
+    }
+   ]
+  }
+ ]
+}
