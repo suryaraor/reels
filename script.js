@@ -83,47 +83,18 @@ function api(params) {
     });
 }
 
-// ---------- File name -> title, description, hashtags ----------
-// "07-project-gazematch.mp4"               -> title "Gazematch", tags #project #gazematch
-// "03-city-walk--sunset by the river #travel.mp4" -> title "City Walk", description "Sunset by the river", tags #city #walk #travel
-// Leading numbers set the order and are dropped. Words found in every file of the folder (like "project")
-// become a shared hashtag and are left out of the titles.
-const STOP = new Set(['a', 'an', 'the', 'and', 'or', 'of', 'to', 'in', 'on', 'at', 'by', 'for', 'with', 'from', 'is', 'it', 'my', 'our', 'your', 'final', 'copy', 'edit', 'v1', 'v2', 'v3']);
-const cap = (w) => (w ? w.charAt(0).toUpperCase() + w.slice(1) : w);
-const splitWords = (s) => s.split(/[\s._-]+/).filter(Boolean);
+// ---------- Videos (titles, descriptions and hashtags come from the file names; see build.js) ----------
 const tagOf = (s) => s.toLowerCase().replace(/[^\p{L}\p{N}_]/gu, '');
-
-function describeFolder(folder) {
-    const parsed = folder.videos.map((v) => {
-        const stem = v.file.replace(/\.[^.]+$/, '');
-        const explicit = (stem.match(/#[\p{L}\p{N}_]+/gu) || []).map((t) => tagOf(t.slice(1)));
-        const [main, ...rest] = stem.replace(/#[\p{L}\p{N}_]+/gu, ' ').split(/--|__/);
-        const num = /^\s*(\d+)[\s._-]*/.exec(main);
-        return { ...v, stem, explicit, words: splitWords(num ? main.slice(num[0].length) : main), desc: splitWords(rest.join(' ')).join(' ') };
-    });
-    const sets = parsed.map((p) => new Set(p.words.map((w) => w.toLowerCase())));
-    const common = parsed.length > 1 ? [...sets[0]].filter((w) => sets.every((s) => s.has(w))) : [];
-    const n = parsed.length;
-    folder.videos = parsed.map((p, i) => {
-        const own = p.words.filter((w) => !common.includes(w.toLowerCase()));
-        const title = (own.length ? own : p.words).map(cap).join(' ') || p.stem;
-        const sentence = cap(p.words.join(' ').toLowerCase());
-        const description = p.desc ? cap(p.desc) : `${sentence}. Reel ${i + 1} of ${n} in ${folder.name}.`;
-        const tags = [...new Set([...p.words.map(tagOf), ...p.explicit])]
-            .filter((t) => t.length > 1 && !STOP.has(t) && !/^\d+$/.test(t));
-        return { file: p.file, src: p.src, poster: p.poster || '', stem: p.stem, title, description, tags };
-    });
-    folder.tagCounts = {};
-    folder.videos.forEach((v) => v.tags.forEach((t) => { folder.tagCounts[t] = (folder.tagCounts[t] || 0) + 1; }));
-    return folder;
-}
 
 async function loadManifest() {
     if (state.manifest) return state.manifest;
     const r = await fetch('videos.json', { cache: 'no-cache' });
     if (!r.ok) throw new Error('videos.json not found. Run "node build.js" in the project folder first.');
     const m = await r.json();
-    m.folders.forEach(describeFolder);
+    m.folders.forEach((f) => {
+        f.tagCounts = {};
+        f.videos.forEach((v) => v.tags.forEach((t) => { f.tagCounts[t] = (f.tagCounts[t] || 0) + 1; }));
+    });
     state.manifest = m;
     return m;
 }
@@ -134,9 +105,11 @@ function findFolder(name) {
 }
 
 // ---------- Links ----------
-const base = () => location.origin + location.pathname;
-const folderLink = (f) => `${base()}#/${enc(f.name)}`;
-const videoLink = (f, v) => `${base()}#/${enc(f.name)}/${enc(v.stem)}`;
+// Shared links point at the small pages in r/ that build.js makes: they carry the preview (picture, title,
+// hashtags) for WhatsApp, iMessage, Slack, X... and send people straight into the reel.
+const base = () => location.origin + location.pathname.replace(/index\.html$/, '');
+const folderLink = (f) => base() + (f.share || `#/${enc(f.name)}`);
+const videoLink = (f, v) => base() + (v.share || `#/${enc(f.name)}/${enc(v.stem)}`);
 function parseHash() {
     const h = location.hash.replace(/^#\/?/, '');
     const [path, query] = h.split('?');

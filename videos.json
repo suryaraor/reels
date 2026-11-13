@@ -1,213 +1,592 @@
 {
- "generated": "2026-11-13T15:03:26.081Z",
+ "generated": "2026-11-13T15:25:11.521Z",
+ "site": "https://suryarao.in/reels/",
  "folders": [
   {
    "name": "gyoridavid",
+   "share": "r/gyoridavid/",
    "videos": [
     {
      "file": "01-project-shortcut-hunter.mp4",
+     "stem": "01-project-shortcut-hunter",
+     "title": "Shortcut Hunter",
+     "description": "Project shortcut hunter. Reel 1 of 20 in gyoridavid.",
+     "tags": [
+      "project",
+      "shortcut",
+      "hunter"
+     ],
      "src": "data/gyoridavid/01-project-shortcut-hunter.mp4",
-     "poster": "posters/gyoridavid/01-project-shortcut-hunter.jpg"
+     "poster": "posters/gyoridavid/01-project-shortcut-hunter.jpg",
+     "ogImage": "posters/gyoridavid/01-project-shortcut-hunter.og.jpg",
+     "share": "r/gyoridavid/01-project-shortcut-hunter/"
     },
     {
      "file": "02-project-leakcheck.mp4",
+     "stem": "02-project-leakcheck",
+     "title": "Leakcheck",
+     "description": "Project leakcheck. Reel 2 of 20 in gyoridavid.",
+     "tags": [
+      "project",
+      "leakcheck"
+     ],
      "src": "data/gyoridavid/02-project-leakcheck.mp4",
-     "poster": "posters/gyoridavid/02-project-leakcheck.jpg"
+     "poster": "posters/gyoridavid/02-project-leakcheck.jpg",
+     "ogImage": "posters/gyoridavid/02-project-leakcheck.og.jpg",
+     "share": "r/gyoridavid/02-project-leakcheck/"
     },
     {
      "file": "03-project-realworld-stresstest.mp4",
+     "stem": "03-project-realworld-stresstest",
+     "title": "Realworld Stresstest",
+     "description": "Project realworld stresstest. Reel 3 of 20 in gyoridavid.",
+     "tags": [
+      "project",
+      "realworld",
+      "stresstest"
+     ],
      "src": "data/gyoridavid/03-project-realworld-stresstest.mp4",
-     "poster": "posters/gyoridavid/03-project-realworld-stresstest.jpg"
+     "poster": "posters/gyoridavid/03-project-realworld-stresstest.jpg",
+     "ogImage": "posters/gyoridavid/03-project-realworld-stresstest.og.jpg",
+     "share": "r/gyoridavid/03-project-realworld-stresstest/"
     },
     {
      "file": "04-project-fairscan.mp4",
+     "stem": "04-project-fairscan",
+     "title": "Fairscan",
+     "description": "Project fairscan. Reel 4 of 20 in gyoridavid.",
+     "tags": [
+      "project",
+      "fairscan"
+     ],
      "src": "data/gyoridavid/04-project-fairscan.mp4",
-     "poster": "posters/gyoridavid/04-project-fairscan.jpg"
+     "poster": "posters/gyoridavid/04-project-fairscan.jpg",
+     "ogImage": "posters/gyoridavid/04-project-fairscan.og.jpg",
+     "share": "r/gyoridavid/04-project-fairscan/"
     },
     {
      "file": "05-project-hidden-signal-probe.mp4",
+     "stem": "05-project-hidden-signal-probe",
+     "title": "Hidden Signal Probe",
+     "description": "Project hidden signal probe. Reel 5 of 20 in gyoridavid.",
+     "tags": [
+      "project",
+      "hidden",
+      "signal",
+      "probe"
+     ],
      "src": "data/gyoridavid/05-project-hidden-signal-probe.mp4",
-     "poster": "posters/gyoridavid/05-project-hidden-signal-probe.jpg"
+     "poster": "posters/gyoridavid/05-project-hidden-signal-probe.jpg",
+     "ogImage": "posters/gyoridavid/05-project-hidden-signal-probe.og.jpg",
+     "share": "r/gyoridavid/05-project-hidden-signal-probe/"
     },
     {
      "file": "06-project-everyskin.mp4",
+     "stem": "06-project-everyskin",
+     "title": "Everyskin",
+     "description": "Project everyskin. Reel 6 of 20 in gyoridavid.",
+     "tags": [
+      "project",
+      "everyskin"
+     ],
      "src": "data/gyoridavid/06-project-everyskin.mp4",
-     "poster": "posters/gyoridavid/06-project-everyskin.jpg"
+     "poster": "posters/gyoridavid/06-project-everyskin.jpg",
+     "ogImage": "posters/gyoridavid/06-project-everyskin.og.jpg",
+     "share": "r/gyoridavid/06-project-everyskin/"
     },
     {
      "file": "07-project-gazematch.mp4",
+     "stem": "07-project-gazematch",
+     "title": "Gazematch",
+     "description": "Project gazematch. Reel 7 of 20 in gyoridavid.",
+     "tags": [
+      "project",
+      "gazematch"
+     ],
      "src": "data/gyoridavid/07-project-gazematch.mp4",
-     "poster": "posters/gyoridavid/07-project-gazematch.jpg"
+     "poster": "posters/gyoridavid/07-project-gazematch.jpg",
+     "ogImage": "posters/gyoridavid/07-project-gazematch.og.jpg",
+     "share": "r/gyoridavid/07-project-gazematch/"
     },
     {
      "file": "08-project-whatif-xray.mp4",
+     "stem": "08-project-whatif-xray",
+     "title": "Whatif Xray",
+     "description": "Project whatif xray. Reel 8 of 20 in gyoridavid.",
+     "tags": [
+      "project",
+      "whatif",
+      "xray"
+     ],
      "src": "data/gyoridavid/08-project-whatif-xray.mp4",
-     "poster": "posters/gyoridavid/08-project-whatif-xray.jpg"
+     "poster": "posters/gyoridavid/08-project-whatif-xray.jpg",
+     "ogImage": "posters/gyoridavid/08-project-whatif-xray.og.jpg",
+     "share": "r/gyoridavid/08-project-whatif-xray/"
     },
     {
      "file": "09-project-flipcheck.mp4",
+     "stem": "09-project-flipcheck",
+     "title": "Flipcheck",
+     "description": "Project flipcheck. Reel 9 of 20 in gyoridavid.",
+     "tags": [
+      "project",
+      "flipcheck"
+     ],
      "src": "data/gyoridavid/09-project-flipcheck.mp4",
-     "poster": "posters/gyoridavid/09-project-flipcheck.jpg"
+     "poster": "posters/gyoridavid/09-project-flipcheck.jpg",
+     "ogImage": "posters/gyoridavid/09-project-flipcheck.og.jpg",
+     "share": "r/gyoridavid/09-project-flipcheck/"
     },
     {
      "file": "10-project-blindtest.mp4",
+     "stem": "10-project-blindtest",
+     "title": "Blindtest",
+     "description": "Project blindtest. Reel 10 of 20 in gyoridavid.",
+     "tags": [
+      "project",
+      "blindtest"
+     ],
      "src": "data/gyoridavid/10-project-blindtest.mp4",
-     "poster": "posters/gyoridavid/10-project-blindtest.jpg"
+     "poster": "posters/gyoridavid/10-project-blindtest.jpg",
+     "ogImage": "posters/gyoridavid/10-project-blindtest.og.jpg",
+     "share": "r/gyoridavid/10-project-blindtest/"
     },
     {
      "file": "11-project-factcheck-rad.mp4",
+     "stem": "11-project-factcheck-rad",
+     "title": "Factcheck Rad",
+     "description": "Project factcheck rad. Reel 11 of 20 in gyoridavid.",
+     "tags": [
+      "project",
+      "factcheck",
+      "rad"
+     ],
      "src": "data/gyoridavid/11-project-factcheck-rad.mp4",
-     "poster": "posters/gyoridavid/11-project-factcheck-rad.jpg"
+     "poster": "posters/gyoridavid/11-project-factcheck-rad.jpg",
+     "ogImage": "posters/gyoridavid/11-project-factcheck-rad.og.jpg",
+     "share": "r/gyoridavid/11-project-factcheck-rad/"
     },
     {
      "file": "12-project-priorscan-agent.mp4",
+     "stem": "12-project-priorscan-agent",
+     "title": "Priorscan Agent",
+     "description": "Project priorscan agent. Reel 12 of 20 in gyoridavid.",
+     "tags": [
+      "project",
+      "priorscan",
+      "agent"
+     ],
      "src": "data/gyoridavid/12-project-priorscan-agent.mp4",
-     "poster": "posters/gyoridavid/12-project-priorscan-agent.jpg"
+     "poster": "posters/gyoridavid/12-project-priorscan-agent.jpg",
+     "ogImage": "posters/gyoridavid/12-project-priorscan-agent.og.jpg",
+     "share": "r/gyoridavid/12-project-priorscan-agent/"
     },
     {
      "file": "13-project-stainproof.mp4",
+     "stem": "13-project-stainproof",
+     "title": "Stainproof",
+     "description": "Project stainproof. Reel 13 of 20 in gyoridavid.",
+     "tags": [
+      "project",
+      "stainproof"
+     ],
      "src": "data/gyoridavid/13-project-stainproof.mp4",
-     "poster": "posters/gyoridavid/13-project-stainproof.jpg"
+     "poster": "posters/gyoridavid/13-project-stainproof.jpg",
+     "ogImage": "posters/gyoridavid/13-project-stainproof.og.jpg",
+     "share": "r/gyoridavid/13-project-stainproof/"
     },
     {
      "file": "14-project-sureenough.mp4",
+     "stem": "14-project-sureenough",
+     "title": "Sureenough",
+     "description": "Project sureenough. Reel 14 of 20 in gyoridavid.",
+     "tags": [
+      "project",
+      "sureenough"
+     ],
      "src": "data/gyoridavid/14-project-sureenough.mp4",
-     "poster": "posters/gyoridavid/14-project-sureenough.jpg"
+     "poster": "posters/gyoridavid/14-project-sureenough.jpg",
+     "ogImage": "posters/gyoridavid/14-project-sureenough.og.jpg",
+     "share": "r/gyoridavid/14-project-sureenough/"
     },
     {
      "file": "15-project-memoryleak-audit.mp4",
+     "stem": "15-project-memoryleak-audit",
+     "title": "Memoryleak Audit",
+     "description": "Project memoryleak audit. Reel 15 of 20 in gyoridavid.",
+     "tags": [
+      "project",
+      "memoryleak",
+      "audit"
+     ],
      "src": "data/gyoridavid/15-project-memoryleak-audit.mp4",
-     "poster": "posters/gyoridavid/15-project-memoryleak-audit.jpg"
+     "poster": "posters/gyoridavid/15-project-memoryleak-audit.jpg",
+     "ogImage": "posters/gyoridavid/15-project-memoryleak-audit.og.jpg",
+     "share": "r/gyoridavid/15-project-memoryleak-audit/"
     },
     {
      "file": "16-project-fedxray.mp4",
+     "stem": "16-project-fedxray",
+     "title": "Fedxray",
+     "description": "Project fedxray. Reel 16 of 20 in gyoridavid.",
+     "tags": [
+      "project",
+      "fedxray"
+     ],
      "src": "data/gyoridavid/16-project-fedxray.mp4",
-     "poster": "posters/gyoridavid/16-project-fedxray.jpg"
+     "poster": "posters/gyoridavid/16-project-fedxray.jpg",
+     "ogImage": "posters/gyoridavid/16-project-fedxray.og.jpg",
+     "share": "r/gyoridavid/16-project-fedxray/"
     },
     {
      "file": "17-project-lungage.mp4",
+     "stem": "17-project-lungage",
+     "title": "Lungage",
+     "description": "Project lungage. Reel 17 of 20 in gyoridavid.",
+     "tags": [
+      "project",
+      "lungage"
+     ],
      "src": "data/gyoridavid/17-project-lungage.mp4",
-     "poster": "posters/gyoridavid/17-project-lungage.jpg"
+     "poster": "posters/gyoridavid/17-project-lungage.jpg",
+     "ogImage": "posters/gyoridavid/17-project-lungage.og.jpg",
+     "share": "r/gyoridavid/17-project-lungage/"
     },
     {
      "file": "18-project-worthit.mp4",
+     "stem": "18-project-worthit",
+     "title": "Worthit",
+     "description": "Project worthit. Reel 18 of 20 in gyoridavid.",
+     "tags": [
+      "project",
+      "worthit"
+     ],
      "src": "data/gyoridavid/18-project-worthit.mp4",
-     "poster": "posters/gyoridavid/18-project-worthit.jpg"
+     "poster": "posters/gyoridavid/18-project-worthit.jpg",
+     "ogImage": "posters/gyoridavid/18-project-worthit.og.jpg",
+     "share": "r/gyoridavid/18-project-worthit/"
     },
     {
      "file": "19-project-cleanlabel.mp4",
+     "stem": "19-project-cleanlabel",
+     "title": "Cleanlabel",
+     "description": "Project cleanlabel. Reel 19 of 20 in gyoridavid.",
+     "tags": [
+      "project",
+      "cleanlabel"
+     ],
      "src": "data/gyoridavid/19-project-cleanlabel.mp4",
-     "poster": "posters/gyoridavid/19-project-cleanlabel.jpg"
+     "poster": "posters/gyoridavid/19-project-cleanlabel.jpg",
+     "ogImage": "posters/gyoridavid/19-project-cleanlabel.og.jpg",
+     "share": "r/gyoridavid/19-project-cleanlabel/"
     },
     {
      "file": "20-project-synthrx.mp4",
+     "stem": "20-project-synthrx",
+     "title": "Synthrx",
+     "description": "Project synthrx. Reel 20 of 20 in gyoridavid.",
+     "tags": [
+      "project",
+      "synthrx"
+     ],
      "src": "data/gyoridavid/20-project-synthrx.mp4",
-     "poster": "posters/gyoridavid/20-project-synthrx.jpg"
+     "poster": "posters/gyoridavid/20-project-synthrx.jpg",
+     "ogImage": "posters/gyoridavid/20-project-synthrx.og.jpg",
+     "share": "r/gyoridavid/20-project-synthrx/"
     }
    ]
   },
   {
    "name": "JoasASantos",
+   "share": "r/JoasASantos/",
    "videos": [
     {
      "file": "01-project-shortcut-hunter.mp4",
+     "stem": "01-project-shortcut-hunter",
+     "title": "Shortcut Hunter",
+     "description": "Project shortcut hunter. Reel 1 of 20 in JoasASantos.",
+     "tags": [
+      "project",
+      "shortcut",
+      "hunter"
+     ],
      "src": "data/JoasASantos/01-project-shortcut-hunter.mp4",
-     "poster": "posters/JoasASantos/01-project-shortcut-hunter.jpg"
+     "poster": "posters/JoasASantos/01-project-shortcut-hunter.jpg",
+     "ogImage": "posters/JoasASantos/01-project-shortcut-hunter.og.jpg",
+     "share": "r/JoasASantos/01-project-shortcut-hunter/"
     },
     {
      "file": "02-project-leakcheck.mp4",
+     "stem": "02-project-leakcheck",
+     "title": "Leakcheck",
+     "description": "Project leakcheck. Reel 2 of 20 in JoasASantos.",
+     "tags": [
+      "project",
+      "leakcheck"
+     ],
      "src": "data/JoasASantos/02-project-leakcheck.mp4",
-     "poster": "posters/JoasASantos/02-project-leakcheck.jpg"
+     "poster": "posters/JoasASantos/02-project-leakcheck.jpg",
+     "ogImage": "posters/JoasASantos/02-project-leakcheck.og.jpg",
+     "share": "r/JoasASantos/02-project-leakcheck/"
     },
     {
      "file": "03-project-realworld-stresstest.mp4",
+     "stem": "03-project-realworld-stresstest",
+     "title": "Realworld Stresstest",
+     "description": "Project realworld stresstest. Reel 3 of 20 in JoasASantos.",
+     "tags": [
+      "project",
+      "realworld",
+      "stresstest"
+     ],
      "src": "data/JoasASantos/03-project-realworld-stresstest.mp4",
-     "poster": "posters/JoasASantos/03-project-realworld-stresstest.jpg"
+     "poster": "posters/JoasASantos/03-project-realworld-stresstest.jpg",
+     "ogImage": "posters/JoasASantos/03-project-realworld-stresstest.og.jpg",
+     "share": "r/JoasASantos/03-project-realworld-stresstest/"
     },
     {
      "file": "04-project-fairscan.mp4",
+     "stem": "04-project-fairscan",
+     "title": "Fairscan",
+     "description": "Project fairscan. Reel 4 of 20 in JoasASantos.",
+     "tags": [
+      "project",
+      "fairscan"
+     ],
      "src": "data/JoasASantos/04-project-fairscan.mp4",
-     "poster": "posters/JoasASantos/04-project-fairscan.jpg"
+     "poster": "posters/JoasASantos/04-project-fairscan.jpg",
+     "ogImage": "posters/JoasASantos/04-project-fairscan.og.jpg",
+     "share": "r/JoasASantos/04-project-fairscan/"
     },
     {
      "file": "05-project-hidden-signal-probe.mp4",
+     "stem": "05-project-hidden-signal-probe",
+     "title": "Hidden Signal Probe",
+     "description": "Project hidden signal probe. Reel 5 of 20 in JoasASantos.",
+     "tags": [
+      "project",
+      "hidden",
+      "signal",
+      "probe"
+     ],
      "src": "data/JoasASantos/05-project-hidden-signal-probe.mp4",
-     "poster": "posters/JoasASantos/05-project-hidden-signal-probe.jpg"
+     "poster": "posters/JoasASantos/05-project-hidden-signal-probe.jpg",
+     "ogImage": "posters/JoasASantos/05-project-hidden-signal-probe.og.jpg",
+     "share": "r/JoasASantos/05-project-hidden-signal-probe/"
     },
     {
      "file": "06-project-everyskin.mp4",
+     "stem": "06-project-everyskin",
+     "title": "Everyskin",
+     "description": "Project everyskin. Reel 6 of 20 in JoasASantos.",
+     "tags": [
+      "project",
+      "everyskin"
+     ],
      "src": "data/JoasASantos/06-project-everyskin.mp4",
-     "poster": "posters/JoasASantos/06-project-everyskin.jpg"
+     "poster": "posters/JoasASantos/06-project-everyskin.jpg",
+     "ogImage": "posters/JoasASantos/06-project-everyskin.og.jpg",
+     "share": "r/JoasASantos/06-project-everyskin/"
     },
     {
      "file": "07-project-gazematch.mp4",
+     "stem": "07-project-gazematch",
+     "title": "Gazematch",
+     "description": "Project gazematch. Reel 7 of 20 in JoasASantos.",
+     "tags": [
+      "project",
+      "gazematch"
+     ],
      "src": "data/JoasASantos/07-project-gazematch.mp4",
-     "poster": "posters/JoasASantos/07-project-gazematch.jpg"
+     "poster": "posters/JoasASantos/07-project-gazematch.jpg",
+     "ogImage": "posters/JoasASantos/07-project-gazematch.og.jpg",
+     "share": "r/JoasASantos/07-project-gazematch/"
     },
     {
      "file": "08-project-whatif-xray.mp4",
+     "stem": "08-project-whatif-xray",
+     "title": "Whatif Xray",
+     "description": "Project whatif xray. Reel 8 of 20 in JoasASantos.",
+     "tags": [
+      "project",
+      "whatif",
+      "xray"
+     ],
      "src": "data/JoasASantos/08-project-whatif-xray.mp4",
-     "poster": "posters/JoasASantos/08-project-whatif-xray.jpg"
+     "poster": "posters/JoasASantos/08-project-whatif-xray.jpg",
+     "ogImage": "posters/JoasASantos/08-project-whatif-xray.og.jpg",
+     "share": "r/JoasASantos/08-project-whatif-xray/"
     },
     {
      "file": "09-project-flipcheck.mp4",
+     "stem": "09-project-flipcheck",
+     "title": "Flipcheck",
+     "description": "Project flipcheck. Reel 9 of 20 in JoasASantos.",
+     "tags": [
+      "project",
+      "flipcheck"
+     ],
      "src": "data/JoasASantos/09-project-flipcheck.mp4",
-     "poster": "posters/JoasASantos/09-project-flipcheck.jpg"
+     "poster": "posters/JoasASantos/09-project-flipcheck.jpg",
+     "ogImage": "posters/JoasASantos/09-project-flipcheck.og.jpg",
+     "share": "r/JoasASantos/09-project-flipcheck/"
     },
     {
      "file": "10-project-blindtest.mp4",
+     "stem": "10-project-blindtest",
+     "title": "Blindtest",
+     "description": "Project blindtest. Reel 10 of 20 in JoasASantos.",
+     "tags": [
+      "project",
+      "blindtest"
+     ],
      "src": "data/JoasASantos/10-project-blindtest.mp4",
-     "poster": "posters/JoasASantos/10-project-blindtest.jpg"
+     "poster": "posters/JoasASantos/10-project-blindtest.jpg",
+     "ogImage": "posters/JoasASantos/10-project-blindtest.og.jpg",
+     "share": "r/JoasASantos/10-project-blindtest/"
     },
     {
      "file": "11-project-factcheck-rad.mp4",
+     "stem": "11-project-factcheck-rad",
+     "title": "Factcheck Rad",
+     "description": "Project factcheck rad. Reel 11 of 20 in JoasASantos.",
+     "tags": [
+      "project",
+      "factcheck",
+      "rad"
+     ],
      "src": "data/JoasASantos/11-project-factcheck-rad.mp4",
-     "poster": "posters/JoasASantos/11-project-factcheck-rad.jpg"
+     "poster": "posters/JoasASantos/11-project-factcheck-rad.jpg",
+     "ogImage": "posters/JoasASantos/11-project-factcheck-rad.og.jpg",
+     "share": "r/JoasASantos/11-project-factcheck-rad/"
     },
     {
      "file": "12-project-priorscan-agent.mp4",
+     "stem": "12-project-priorscan-agent",
+     "title": "Priorscan Agent",
+     "description": "Project priorscan agent. Reel 12 of 20 in JoasASantos.",
+     "tags": [
+      "project",
+      "priorscan",
+      "agent"
+     ],
      "src": "data/JoasASantos/12-project-priorscan-agent.mp4",
-     "poster": "posters/JoasASantos/12-project-priorscan-agent.jpg"
+     "poster": "posters/JoasASantos/12-project-priorscan-agent.jpg",
+     "ogImage": "posters/JoasASantos/12-project-priorscan-agent.og.jpg",
+     "share": "r/JoasASantos/12-project-priorscan-agent/"
     },
     {
      "file": "13-project-stainproof.mp4",
+     "stem": "13-project-stainproof",
+     "title": "Stainproof",
+     "description": "Project stainproof. Reel 13 of 20 in JoasASantos.",
+     "tags": [
+      "project",
+      "stainproof"
+     ],
      "src": "data/JoasASantos/13-project-stainproof.mp4",
-     "poster": "posters/JoasASantos/13-project-stainproof.jpg"
+     "poster": "posters/JoasASantos/13-project-stainproof.jpg",
+     "ogImage": "posters/JoasASantos/13-project-stainproof.og.jpg",
+     "share": "r/JoasASantos/13-project-stainproof/"
     },
     {
      "file": "14-project-sureenough.mp4",
+     "stem": "14-project-sureenough",
+     "title": "Sureenough",
+     "description": "Project sureenough. Reel 14 of 20 in JoasASantos.",
+     "tags": [
+      "project",
+      "sureenough"
+     ],
      "src": "data/JoasASantos/14-project-sureenough.mp4",
-     "poster": "posters/JoasASantos/14-project-sureenough.jpg"
+     "poster": "posters/JoasASantos/14-project-sureenough.jpg",
+     "ogImage": "posters/JoasASantos/14-project-sureenough.og.jpg",
+     "share": "r/JoasASantos/14-project-sureenough/"
     },
     {
      "file": "15-project-memoryleak-audit.mp4",
+     "stem": "15-project-memoryleak-audit",
+     "title": "Memoryleak Audit",
+     "description": "Project memoryleak audit. Reel 15 of 20 in JoasASantos.",
+     "tags": [
+      "project",
+      "memoryleak",
+      "audit"
+     ],
      "src": "data/JoasASantos/15-project-memoryleak-audit.mp4",
-     "poster": "posters/JoasASantos/15-project-memoryleak-audit.jpg"
+     "poster": "posters/JoasASantos/15-project-memoryleak-audit.jpg",
+     "ogImage": "posters/JoasASantos/15-project-memoryleak-audit.og.jpg",
+     "share": "r/JoasASantos/15-project-memoryleak-audit/"
     },
     {
      "file": "16-project-fedxray.mp4",
+     "stem": "16-project-fedxray",
+     "title": "Fedxray",
+     "description": "Project fedxray. Reel 16 of 20 in JoasASantos.",
+     "tags": [
+      "project",
+      "fedxray"
+     ],
      "src": "data/JoasASantos/16-project-fedxray.mp4",
-     "poster": "posters/JoasASantos/16-project-fedxray.jpg"
+     "poster": "posters/JoasASantos/16-project-fedxray.jpg",
+     "ogImage": "posters/JoasASantos/16-project-fedxray.og.jpg",
+     "share": "r/JoasASantos/16-project-fedxray/"
     },
     {
      "file": "17-project-lungage.mp4",
+     "stem": "17-project-lungage",
+     "title": "Lungage",
+     "description": "Project lungage. Reel 17 of 20 in JoasASantos.",
+     "tags": [
+      "project",
+      "lungage"
+     ],
      "src": "data/JoasASantos/17-project-lungage.mp4",
-     "poster": "posters/JoasASantos/17-project-lungage.jpg"
+     "poster": "posters/JoasASantos/17-project-lungage.jpg",
+     "ogImage": "posters/JoasASantos/17-project-lungage.og.jpg",
+     "share": "r/JoasASantos/17-project-lungage/"
     },
     {
      "file": "18-project-worthit.mp4",
+     "stem": "18-project-worthit",
+     "title": "Worthit",
+     "description": "Project worthit. Reel 18 of 20 in JoasASantos.",
+     "tags": [
+      "project",
+      "worthit"
+     ],
      "src": "data/JoasASantos/18-project-worthit.mp4",
-     "poster": "posters/JoasASantos/18-project-worthit.jpg"
+     "poster": "posters/JoasASantos/18-project-worthit.jpg",
+     "ogImage": "posters/JoasASantos/18-project-worthit.og.jpg",
+     "share": "r/JoasASantos/18-project-worthit/"
     },
     {
      "file": "19-project-cleanlabel.mp4",
+     "stem": "19-project-cleanlabel",
+     "title": "Cleanlabel",
+     "description": "Project cleanlabel. Reel 19 of 20 in JoasASantos.",
+     "tags": [
+      "project",
+      "cleanlabel"
+     ],
      "src": "data/JoasASantos/19-project-cleanlabel.mp4",
-     "poster": "posters/JoasASantos/19-project-cleanlabel.jpg"
+     "poster": "posters/JoasASantos/19-project-cleanlabel.jpg",
+     "ogImage": "posters/JoasASantos/19-project-cleanlabel.og.jpg",
+     "share": "r/JoasASantos/19-project-cleanlabel/"
     },
     {
      "file": "20-project-synthrx.mp4",
+     "stem": "20-project-synthrx",
+     "title": "Synthrx",
+     "description": "Project synthrx. Reel 20 of 20 in JoasASantos.",
+     "tags": [
+      "project",
+      "synthrx"
+     ],
      "src": "data/JoasASantos/20-project-synthrx.mp4",
-     "poster": "posters/JoasASantos/20-project-synthrx.jpg"
+     "poster": "posters/JoasASantos/20-project-synthrx.jpg",
+     "ogImage": "posters/JoasASantos/20-project-synthrx.og.jpg",
+     "share": "r/JoasASantos/20-project-synthrx/"
     }
    ]
   }
