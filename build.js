@@ -101,7 +101,7 @@ ${meta.map(([p, c]) => `<meta property="${p}" content="${esc(c)}">`).join('\n')}
 <meta name="twitter:description" content="${esc(description)}">
 ${image ? `<meta name="twitter:image" content="${esc(image)}">\n` : ''}<link rel="canonical" href="${esc(url)}">
 <meta http-equiv="refresh" content="0; url=${esc(target)}">
-<script>location.replace(${JSON.stringify(target)} + location.search);</script>
+<script>try{sessionStorage.setItem('reels_ref',document.referrer)}catch(e){}location.replace(${JSON.stringify(target)} + location.search);</script>
 <style>body{font-family:system-ui,sans-serif;background:#14110e;color:#faf7f0;display:grid;place-items:center;min-height:100vh;margin:0}a{color:#ff8a65}</style>
 </head>
 <body><p>Opening <a href="${esc(target)}">${esc(title)}</a>…</p></body>

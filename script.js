@@ -173,9 +173,10 @@ function init() {
     document.addEventListener('visibilitychange', () => {
         const v = current() && current().video;
         if (!v || !document.body.classList.contains('reel-mode')) return;
-        if (document.visibilityState === 'hidden') v.pause();
+        if (document.visibilityState === 'hidden') { v.pause(); finishWatch(current(), 'exit'); flushWatches(); }
         else if (!state.userPaused) playCurrent();
     });
+    window.addEventListener('pagehide', () => { if (current()) finishWatch(current(), 'exit'); flushWatches(); });
 
     $('saveUrlBtn').addEventListener('click', () => {
         const url = $('urlInput').value.trim();
@@ -280,6 +281,8 @@ function openFolder(f, videoStem, tag) {
 function leaveReels() {
     if (!document.body.classList.contains('reel-mode')) return;
     closeSheet();
+    if (current()) finishWatch(current(), 'exit');
+    flushWatches();
     state.reels.forEach((r) => unload(r.video));
     state.reels = [];
     state.index = -1;
@@ -291,6 +294,7 @@ function leaveReels() {
 
 function buildFeed(startStem) {
     const f = state.folder;
+    if (current()) finishWatch(current(), 'skip');
     state.reels.forEach((r) => unload(r.video));
     state.list = state.tag ? f.videos.filter((v) => v.tags.includes(state.tag)) : f.videos.slice();
     state.reels = state.list.map(makeReel);
@@ -318,9 +322,12 @@ function makeReel(v, i) {
     video.preload = 'none';
     video.dataset.src = v.src;
     if (v.poster) video.poster = v.poster;
-    video.addEventListener('ended', () => { if (current() === r) onEnded(); });
-    video.addEventListener('timeupdate', () => { if (video.duration) bar.style.width = `${(video.currentTime / video.duration) * 100}%`; });
-    video.addEventListener('playing', () => { r.el.classList.remove('paused'); state.failures = 0; });
+    video.addEventListener('ended', () => { if (current() === r) { finishWatch(r, 'full'); onEnded(); } });
+    video.addEventListener('timeupdate', () => {
+        if (video.duration) bar.style.width = `${(video.currentTime / video.duration) * 100}%`;
+        if (current() === r) onWatchTime(r);
+    });
+    video.addEventListener('playing', () => { r.el.classList.remove('paused'); state.failures = 0; if (current() === r) startWatch(r); });
     video.addEventListener('error', () => { if (current() === r && video.getAttribute('src')) onVideoError(); });
     r.video = video;
 
@@ -339,7 +346,10 @@ function makeReel(v, i) {
         b.addEventListener('click', (e) => { e.stopPropagation(); setTag(t === state.tag ? null : t); });
         tags.appendChild(b);
     });
-    caption.append(el('div', 'cap-folder', state.folder.name), el('h2', 'cap-title', v.title), el('p', 'cap-desc', v.description), tags);
+    r.viewsEl = el('span', 'cap-views');
+    const where = el('div', 'cap-folder', state.folder.name);
+    where.appendChild(r.viewsEl);
+    caption.append(where, el('h2', 'cap-title', v.title), el('p', 'cap-desc', v.description), tags);
     stage.append(video, flash, counter, caption, progress);
 
     // Tap: play/pause. Double tap: like with a heart burst.
@@ -395,6 +405,7 @@ function onScroll() {
 function activate(i) {
     const n = state.reels.length;
     if (!n) return;
+    if (current() && current() !== state.reels[i]) finishWatch(current(), 'skip');
     state.index = i;
     state.userPaused = false;
     state.reels.forEach((r, j) => {
@@ -535,7 +546,7 @@ function openTagSheet() {
 }
 
 // ---------- Likes / counts ----------
-const ZERO = { likes: 0, comments: 0, shares: 0, liked: false };
+const ZERO = { likes: 0, comments: 0, shares: 0, views: 0, liked: false };
 const stat = (v) => state.stats[v.stem] || ZERO;
 const fmtCount = (n) => (n >= 1e6 ? (n / 1e6).toFixed(1).replace(/\.0$/, '') + 'M' : n >= 1e4 ? Math.round(n / 1e3) + 'K' : n >= 1e3 ? (n / 1e3).toFixed(1).replace(/\.0$/, '') + 'K' : String(n));
 
@@ -546,6 +557,8 @@ function renderStat(r) {
     r.likeBtn.lastChild.textContent = s.likes ? fmtCount(s.likes) : 'Like';
     r.commentBtn.lastChild.textContent = s.comments ? fmtCount(s.comments) : 'Comment';
     r.shareBtn.lastChild.textContent = s.shares ? fmtCount(s.shares) : 'Share';
+    const views = s.views || 0;
+    r.viewsEl.textContent = views ? ` · ${fmtCount(views)} view${views === 1 ? '' : 's'}` : '';
 }
 function putStat(stem, s) {
     state.stats[stem] = s;
@@ -575,6 +588,81 @@ async function setLike(r, liked) {
     } catch (err) {
         putStat(v.stem, before);
         toast(err.message);
+    }
+}
+
+// ---------- Watch stats ----------
+// Each time a reel plays for at least a second it counts as one view, saved with the seconds watched, how far it
+// got and how it ended: "full" (played to the end, or 97%+), "skip" (moved to another reel part-way) or "exit"
+// (went back, closed or switched away from the tab part-way). Views are sent in small batches with a keepalive
+// request, so the last one still arrives when the tab closes. The sheet keeps per-video and per-viewer totals.
+const SESSION = (() => {
+    const make = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4);
+    try {
+        let s = sessionStorage.getItem('reels_session');
+        if (!s) { s = make(); sessionStorage.setItem('reels_session', s); }
+        return s;
+    } catch (e) { return make(); }
+})();
+// Rough device details for the Users tab (no IP address or exact model)
+const CLIENT = (() => {
+    const ua = navigator.userAgent;
+    const ipadOS = /Macintosh/.test(ua) && navigator.maxTouchPoints > 1;
+    const os = /Android/i.test(ua) ? 'Android' : /iPhone|iPad|iPod/.test(ua) || ipadOS ? 'iOS' : /Windows/.test(ua) ? 'Windows'
+        : /CrOS/.test(ua) ? 'ChromeOS' : /Mac OS X/.test(ua) ? 'macOS' : /Linux/.test(ua) ? 'Linux' : 'Other';
+    const browser = /Edg(e|A|iOS)?\//.test(ua) ? 'Edge' : /OPR\//.test(ua) ? 'Opera' : /SamsungBrowser/.test(ua) ? 'Samsung Internet'
+        : /Firefox\/|FxiOS/.test(ua) ? 'Firefox' : /Chrome\/|CriOS/.test(ua) ? 'Chrome' : /Safari\//.test(ua) ? 'Safari' : 'Other';
+    const device = /iPad|Tablet/i.test(ua) || ipadOS || (/Android/i.test(ua) && !/Mobile/.test(ua)) ? 'tablet'
+        : /Mobi|iPhone|Android/i.test(ua) ? 'phone' : 'desktop';
+    // Where the visitor came from: the share pages in r/ note the referrer before redirecting here
+    let ref = document.referrer, viaShare = false;
+    try { const s = sessionStorage.getItem('reels_ref'); if (s !== null) { viaShare = true; ref = s; } } catch (e) { /* ignore */ }
+    let host = '';
+    try { host = new URL(ref).host; } catch (e) { /* no referrer */ }
+    const referrer = host && host !== location.host ? host : viaShare ? 'share link' : '';
+    let timezone = '';
+    try { timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) { /* ignore */ }
+    return { device, os, browser, language: navigator.language || '', timezone, referrer };
+})();
+const watchQueue = [];
+let flushTimer;
+
+function startWatch(r) {
+    if (r.watch) return;
+    const t = r.video.currentTime;
+    r.watch = { folder: state.folder.name, played: 0, maxPos: t, last: t };
+}
+function onWatchTime(r) {
+    const w = r.watch;
+    if (!w) return;
+    const t = r.video.currentTime, dt = t - w.last;
+    if (dt > 0 && dt < 2) w.played += dt; // ignore jumps (seeking, restarting)
+    w.last = t;
+    if (t > w.maxPos) w.maxPos = t;
+}
+function finishWatch(r, outcome) {
+    const w = r && r.watch;
+    if (!w) return;
+    onWatchTime(r);
+    r.watch = null;
+    if (outcome !== 'full' && w.played < 1) return; // flicked past: not a view
+    const d = r.video.duration || 0;
+    const pct = outcome === 'full' ? 100 : d ? Math.min(100, Math.round((w.maxPos / d) * 100)) : 0;
+    if (pct >= 97) outcome = 'full';
+    watchQueue.push({ f: w.folder, v: r.v.stem, w: Math.round(w.played * 10) / 10, d: Math.round(d * 10) / 10, p: pct, o: outcome });
+    if (state.folder && state.folder.name === w.folder) { const s = stat(r.v); putStat(r.v.stem, { ...s, views: (s.views || 0) + 1 }); }
+    clearTimeout(flushTimer);
+    if (watchQueue.length >= 5) flushWatches();
+    else flushTimer = setTimeout(flushWatches, 15000);
+}
+function flushWatches() {
+    clearTimeout(flushTimer);
+    if (!CONFIG.appsScriptUrl) { watchQueue.length = 0; return; }
+    while (watchQueue.length) {
+        const events = JSON.stringify(watchQueue.splice(0, 10));
+        const q = new URLSearchParams({ action: 'track', user: USER, session: SESSION, events, ...CLIENT });
+        // Fire and forget: keepalive lets it finish after the tab closes; no-cors because nothing is read back
+        try { fetch(`${CONFIG.appsScriptUrl}?${q}`, { mode: 'no-cors', keepalive: true, credentials: 'omit' }).catch(() => {}); } catch (e) { /* ignore */ }
     }
 }
 
