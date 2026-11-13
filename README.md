@@ -4,7 +4,7 @@ Instagram-style reels for every folder under `data/`. Each folder gets its own l
 
 ## Add videos
 1. Put videos in a folder under `data/`, e.g. `data/my-trip/01-beach-sunset.mp4` (mp4/webm/m4v/mov).
-2. Run `node build.js`. It writes `videos.json` (the list of folders and videos) and, if ffmpeg is installed, small poster images in `posters/`. Run it again whenever videos change.
+2. Run `node build.js`. It writes `videos.json` (folders, videos, titles, hashtags), the share pages in `r/`, and, if ffmpeg is installed, poster and preview images in `posters/`. Run it again whenever videos change, then commit and push.
 
 ### How file names become titles, descriptions and hashtags
 | File name | Title | Description | Hashtags |
@@ -29,9 +29,11 @@ Tabs `Likes`, `Comments` and `Shares` are created automatically. If you change `
 - Hosted: push the folder to GitHub Pages. GitHub limits each file to 100 MB and a Pages site to about 1 GB, so keep large collections elsewhere.
 
 ## Links
-- `#/<folder>`: a folder's reels, e.g. `https://you.github.io/reels/#/gyoridavid`
-- `#/<folder>/<video name without extension>`: opens on that video (what the Share button sends)
+- `r/<folder>/`: share link for a collection, e.g. `https://suryarao.in/reels/r/gyoridavid/`
+- `r/<folder>/<video name without extension>/`: share link for one reel (what the Share button sends)
 - `#/<folder>?tag=xray`: only the reels with that hashtag
+
+The `r/` pages are made by `build.js`. Chat apps and social sites don't run JavaScript or read anything after `#`, so these pages carry Open Graph tags (title, description, hashtags and a 1200x630 preview image from `posters/*.og.jpg`) for a rich preview, then send people straight into the player. The public address used in those tags defaults to `https://suryarao.in/reels/`; for another host run `node build.js --site=https://example.com/reels/`. WhatsApp and others cache previews, so a link shared before a change may keep its old preview for a while.
 
 ## Using it
 - Swipe or scroll to move between reels; on desktop also use the arrow buttons or ↑/↓ keys. Space pauses, M toggles sound, L likes.
