@@ -22,7 +22,23 @@ Instagram-style reels for every folder under `data/`. Each folder gets its own l
 3. **Deploy > New deployment > Web app**. Execute as: *Me*. Who has access: *Anyone*. Authorize when asked.
 4. Copy the web app URL (ends in `/exec`) and paste it into `DEFAULT_URL` at the top of `script.js`, so everyone you share a link with can like and comment. (The "Connect" link on the home page saves it in one browser only, which is handy for testing.)
 
-Tabs `Likes`, `Comments` and `Shares` are created automatically. If you change `Code.gs` later, use **Deploy > Manage deployments > Edit > New version**.
+Tabs `Likes`, `Comments`, `Shares`, `Views`, `Videos` and `Users` are created automatically. If you change `Code.gs` later, use **Deploy > Manage deployments > Edit > New version**.
+
+## Watch stats
+Every time a reel plays for at least a second it counts as a view. Each view is saved with the seconds watched, how far it got and how it ended:
+- **full**: played to the end (or 97%+)
+- **skip**: moved to another reel part-way
+- **exit**: went back to the collections, closed or switched away from the tab part-way
+
+Quick flicks past a reel (under a second) are not counted; replays count again. Views are sent in small batches, and the last one still arrives when the tab closes.
+
+| Tab | One row per | Columns |
+|---|---|---|
+| `Views` | view | folder, video, user, session, watched (s), duration (s), percent reached, outcome, created |
+| `Videos` | video | views, fullViews, skips, exits, watchSeconds, avgWatchSeconds, avgPercent, completionRate (%), updated |
+| `Users` | viewer (anonymous browser id) | firstSeen, lastSeen, visits, views, fullViews, skips, exits, watchSeconds, likes, comments, shares, device, os, browser, language, timezone, referrer |
+
+`referrer` is the site a viewer first came from, or `share link` when they opened a shared `r/` link with no referring site (most chat apps send none). No IP address or exact device model is collected. The view count is also shown under each reel's caption.
 
 ## Run it
 - Locally: `node serve.js` and open http://localhost:8000 (`node serve.js 8000 lan` to open it from a phone on the same Wi-Fi).
