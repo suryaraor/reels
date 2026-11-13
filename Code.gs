@@ -27,6 +27,9 @@ const TABS = {
 const NUMBERS = ['watched', 'duration', 'percent', 'views', 'fullViews', 'skips', 'exits', 'watchSeconds', 'avgWatchSeconds',
     'avgPercent', 'completionRate', 'visits', 'likes', 'comments', 'shares'];
 const OUTCOMES = { full: 'fullViews', skip: 'skips', exit: 'exits' };
+// Timestamps are saved in US Central time, e.g. "2026-11-13 11:21:04 CST" ("CDT" during daylight saving time)
+const TZ = 'America/Chicago';
+const TIME_COLS = ['created', 'updated', 'firstSeen', 'lastSeen'];
 const has = (o, k) => Object.prototype.hasOwnProperty.call(o, k);
 
 function doGet(e) {
@@ -35,7 +38,7 @@ function doGet(e) {
     try {
         const lock = LockService.getScriptLock();
         lock.waitLock(20000);
-        try { out = handle(p); } finally { lock.releaseLock(); }
+        try { migrateTimestamps(); out = handle(p); } finally { lock.releaseLock(); }
     } catch (err) {
         out = { success: false, error: String(err && err.message || err) };
     }
@@ -168,7 +171,46 @@ function videoStat(folder, video, user) {
 function commentList(folder, video, user) {
     return rows('Comments')
         .filter(r => r.folder === folder && r.video === video)
-        .map(r => ({ id: r.id, name: r.name, text: r.text, created: r.created, mine: !!user && r.user === user }));
+        .map(r => ({ id: r.id, name: r.name, text: r.text, created: isoOf(r.created), mine: !!user && r.user === user }));
+}
+
+// ---------- Time ----------
+function stamp(d) { return Utilities.formatDate(d, TZ, 'yyyy-MM-dd HH:mm:ss z'); }
+// "2026-11-13 11:21:04 CST" -> "2026-11-13T11:21:04-06:00", which browsers can read (comment times)
+function isoOf(s) {
+    const m = /^(\d{4}-\d\d-\d\d) (\d\d:\d\d:\d\d) (CST|CDT)$/.exec(s);
+    return m ? m[1] + 'T' + m[2] + (m[3] === 'CDT' ? '-05:00' : '-06:00') : s;
+}
+// Older rows were saved as UTC ISO strings ("2026-11-13T17:21:04.378Z"); turn them into Central time
+function toCentral(v) {
+    if (v instanceof Date) return stamp(v);
+    const s = String(v === null || v === undefined ? '' : v);
+    if (/^\d{4}-\d\d-\d\dT\d\d:\d\d(:\d\d(\.\d+)?)?(Z|[+-]\d\d:?\d\d)$/.test(s)) {
+        const d = new Date(s);
+        if (!isNaN(d.getTime())) return stamp(d);
+    }
+    return s;
+}
+// Converts every timestamp column in every tab. Runs once by itself (the first request after deploying);
+// it can also be run by hand from the Apps Script editor, and running it again changes nothing.
+function convertTimestampsToCentral() {
+    const ss = book();
+    Object.keys(TABS).forEach(name => {
+        const sh = ss.getSheetByName(name);
+        if (!sh || sh.getLastRow() < 2) return;
+        TABS[name].forEach((c, j) => {
+            if (TIME_COLS.indexOf(c) < 0) return;
+            const range = sh.getRange(2, j + 1, sh.getLastRow() - 1, 1);
+            const vals = range.getValues();
+            range.setNumberFormat('@').setValues(vals.map(r => [toCentral(r[0])]));
+        });
+    });
+}
+function migrateTimestamps() {
+    const props = PropertiesService.getScriptProperties();
+    if (props.getProperty('timestampsTz') === TZ) return;
+    convertTimestampsToCentral();
+    props.setProperty('timestampsTz', TZ);
 }
 
 // ---------- Sheet helpers ----------
@@ -220,5 +262,5 @@ function need(o, k) {
 function num(v) { v = Number(v); return isFinite(v) ? v : 0; }
 function round1(v) { return Math.round(v * 10) / 10; }
 function clamp(v, hi) { return round1(Math.min(hi, Math.max(0, num(v)))); }
-function now() { return new Date().toISOString(); }
+function now() { return stamp(new Date()); }
 function newId() { return Utilities.getUuid().replace(/-/g, '').slice(0, 10); }
