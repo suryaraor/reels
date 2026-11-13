@@ -101,6 +101,15 @@ body.reel-mode .container { display: none; }
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5); pointer-events: none;
 }
 .caption > * { pointer-events: auto; }
+/* While a reel plays the caption stays hidden; it shows on mouse-over, or when paused (tap to pause on phones) */
+.caption { opacity: 0; transition: opacity 0.25s ease; }
+.caption > * { visibility: hidden; transition: visibility 0.25s; }
+.reel.paused .caption { opacity: 1; }
+.reel.paused .caption > * { visibility: visible; }
+@media (hover: hover) {
+    .stage:hover .caption { opacity: 1; }
+    .stage:hover .caption > * { visibility: visible; }
+}
 .cap-folder { font-size: 12px; font-weight: 600; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.6px; }
 .cap-title { font-family: 'Trirong', Georgia, serif; font-size: 22px; font-weight: 600; line-height: 1.2; margin-top: 2px; }
 .cap-desc { font-size: 14px; opacity: 0.92; margin-top: 4px; line-height: 1.35; }
