@@ -19,7 +19,10 @@ const $ = (id) => document.getElementById(id);
 const enc = encodeURIComponent;
 const state = {
     manifest: null, folder: null, list: [], tag: null, index: -1, reels: [], stats: {},
-    muted: true, userPaused: false, sheetKind: null, sheetVideo: null, failures: 0
+    // Sound: browsers only autoplay muted videos, so first-time visitors start muted and see a big "Tap for sound"
+    // button. Once someone turns sound on it is remembered, and later visits try to start with sound.
+    muted: store.get('reels_sound') !== 'on', soundHint: store.get('reels_sound') !== 'on',
+    userPaused: false, sheetKind: null, sheetVideo: null, failures: 0
 };
 
 // ---------- Icons (Lucide paths) ----------
@@ -157,6 +160,8 @@ function init() {
     $('tagClear').addEventListener('click', () => setTag(null));
     $('tagAll').addEventListener('click', () => { closeSheet(); setTag(null); });
     $('muteBtn').addEventListener('click', toggleMute);
+    setIcon($('soundHint'), 'volOff', 'Tap for sound');
+    $('soundHint').addEventListener('click', toggleMute);
     $('prevBtn').addEventListener('click', () => go(state.index - 1));
     $('nextBtn').addEventListener('click', next);
     $('feed').addEventListener('scroll', onScroll, { passive: true });
@@ -423,6 +428,7 @@ function playCurrent() {
         if (!v.muted) {
             // Browser blocked sound without a tap: fall back to muted autoplay
             state.muted = true;
+            state.soundHint = true; // browser blocked sound: offer the big unmute button again
             syncMute();
             v.muted = true;
             v.play().catch(() => r.el.classList.add('paused'));
@@ -473,6 +479,8 @@ function onVideoError() {
 
 function toggleMute() {
     state.muted = !state.muted;
+    state.soundHint = false;
+    store.set('reels_sound', state.muted ? 'off' : 'on');
     syncMute();
     const r = current();
     if (r) { r.video.muted = state.muted; if (r.video.paused && !state.userPaused) playCurrent(); }
@@ -481,6 +489,7 @@ function syncMute() {
     setIcon($('muteBtn'), state.muted ? 'volOff' : 'volOn');
     $('muteBtn').setAttribute('aria-label', state.muted ? 'Turn sound on' : 'Turn sound off');
     $('muteBtn').classList.toggle('on', state.muted);
+    show('soundHint', state.muted && state.soundHint);
 }
 
 function heartBurst(stage, e) {
