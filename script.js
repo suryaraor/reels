@@ -107,20 +107,38 @@ function findFolder(name) {
 // ---------- Links ----------
 // Shared links point at the small pages in r/ that build.js makes: they carry the preview (picture, title,
 // hashtags) for WhatsApp, iMessage, Slack, X... and send people straight into the reel.
-const base = () => location.origin + location.pathname.replace(/index\.html$/, '');
+// While watching, the address bar shows the current reel's share link (r/<folder>/<video>/), so a link copied
+// from it, or sent with the browser's own Share button, also gets the reel's preview instead of the home page's.
+// The app root is fixed here, and a <base> keeps relative paths (videos.json, data/, posters/) pointing at it.
+const APP_PATH = location.pathname.replace(/[^/]*$/, '');
+const APP_BASE = location.origin + APP_PATH;
+(() => { const b = document.createElement('base'); b.href = APP_BASE; document.head.prepend(b); })();
+const base = () => APP_BASE;
 const folderLink = (f) => base() + (f.share || `#/${enc(f.name)}`);
 const videoLink = (f, v) => base() + (v.share || `#/${enc(f.name)}/${enc(v.stem)}`);
+// Reads r/<folder>/<video>/?tag=x from the path, or the older #/<folder>/<video>?tag=x form
 function parseHash() {
+    const dec = (s) => { try { return decodeURIComponent(s); } catch (e) { return s; } };
+    const rel = location.pathname.startsWith(APP_PATH) ? location.pathname.slice(APP_PATH.length) : '';
+    const m = /^r\/([^/]+)\/(?:([^/]+)\/?)?$/.exec(rel);
+    if (m) return { folder: dec(m[1]), video: m[2] ? dec(m[2]) : null, tag: new URLSearchParams(location.search).get('tag') };
     const h = location.hash.replace(/^#\/?/, '');
     const [path, query] = h.split('?');
-    let parts = [];
-    try { parts = path.split('/').filter(Boolean).map(decodeURIComponent); } catch (e) { /* bad link */ }
+    const parts = path.split('/').filter(Boolean).map(dec);
     return { folder: parts[0] || null, video: parts[1] || null, tag: new URLSearchParams(query || '').get('tag') };
+}
+function navigate(url) { history.pushState(null, '', url); route(); }
+// Keep the address bar and tab title on the reel being watched (no new history entry per swipe)
+function showInAddressBar(f, v) {
+    const url = (v ? videoLink(f, v) : folderLink(f)) + (state.tag ? `?tag=${enc(state.tag)}` : '');
+    if (url !== location.href) history.replaceState(null, '', url);
+    document.title = v ? `${v.title} · ${f.name}` : `${f.name} · Reels`;
 }
 
 // ---------- Router ----------
 document.addEventListener('DOMContentLoaded', init);
 window.addEventListener('hashchange', route);
+window.addEventListener('popstate', route);
 
 function init() {
     const h = $('hdrTitle');
@@ -134,7 +152,7 @@ function init() {
     setIcon($('shNative'), 'share', 'More…');
     syncMute();
 
-    $('reelBack').addEventListener('click', () => { location.hash = '#/'; });
+    $('reelBack').addEventListener('click', () => navigate(APP_BASE));
     $('filterBtn').addEventListener('click', openTagSheet);
     $('tagClear').addEventListener('click', () => setTag(null));
     $('tagAll').addEventListener('click', () => { closeSheet(); setTag(null); });
@@ -213,7 +231,7 @@ function renderHome(m) {
         const top = Object.entries(f.tagCounts).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 4).map(([t]) => '#' + t);
         meta.append(el('div', 'name', f.name), el('div', 'sub', `${f.videos.length} reel${f.videos.length === 1 ? '' : 's'}`), el('div', 'tags', top.join(' ')));
         open.append(thumbs, meta);
-        open.addEventListener('click', () => { location.hash = `#/${enc(f.name)}`; });
+        open.addEventListener('click', () => navigate(folderLink(f)));
         const share = el('button', 'icon-btn');
         share.type = 'button';
         share.setAttribute('aria-label', `Share link to ${f.name}`);
@@ -380,6 +398,7 @@ function activate(i) {
         else if (d > 2) unload(r.video);
         if (j !== i && !r.video.paused) r.video.pause();
     });
+    showInAddressBar(state.folder, current().v);
     const v = current().video;
     if (v.readyState > 0) v.currentTime = 0;
     playCurrent();
@@ -488,10 +507,8 @@ function onKey(e) {
 
 // ---------- Hashtag filter ----------
 function setTag(tag) {
-    const f = state.folder;
     const keep = current() && current().v.stem;
     state.tag = tag;
-    history.replaceState(null, '', `#/${enc(f.name)}${tag ? `?tag=${enc(tag)}` : ''}`);
     buildFeed(keep);
     if (tag) toast(`Showing ${state.list.length} reel${state.list.length === 1 ? '' : 's'} with #${tag}`);
 }
